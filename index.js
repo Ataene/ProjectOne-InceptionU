@@ -2,6 +2,8 @@
 const express = require("express");
 const randomArrayNames = require("./randomNames");
 const randomQuestion = require("./api");
+const victimGetCorps = require("./victim");
+const { commitedCrime, timeOfCrime } = require("./getAnswer");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -13,17 +15,9 @@ app.use(express.static(__dirname + '/public'));
     let anyQuestion = Math.floor(Math.random()*randomQuestion.length); //random question
     let quest = randomQuestion[anyQuestion].question; //question
     let answerTF = randomQuestion[anyQuestion].correct_answer; //answer
+    // string.charAt(0).toUpperCase() + string.slice(1);
+    // let suspectChar = randomSuspect.split("");
 
-    let victimGetCorps = {
-        crimeScene: "movie theatre",
-        clue: 42,
-        security: "Security calls 911",
-        police: "Corps, who stole the iPhone?",
-        getPolice: function(){
-            let findMoney = "Who stole the $100";
-            return findMoney;
-        }
-    }
 
 app.get("/", function(req, res){
 
@@ -95,16 +89,16 @@ app.get("/question", function(req, res){
 app.get("/answer", function(req, res){
 
     response = req.query.response;
-    // string.charAt(0).toUpperCase() + string.slice(1);
+
         console.log(answerTF);
-        if(answerTF === response){
-            res.write(" You did not commit the crime\n");
-        } else if(answerTF !== response){
-            res.write(" You committed the crime it's game over, jail time\n");
-        }
-    res.send()
+        let crime = commitedCrime()
+        // if(answerTF === response){
+        //     res.write(" You did not commit the crime\n");
+        // } else if(answerTF !== response){
+        //     res.write(" You committed the crime it's game over, jail time\n");
+        // }
+    res.send(crime);
 })
-    // let suspectChar = randomSuspect.split("");
 
     app.listen(PORT, function(req, res){
 
