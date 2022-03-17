@@ -1,4 +1,6 @@
 const randomQuestion = require("./api");
+const victimGetCorps = require("./victim");
+
 
 const commitedCrime = function(){
 
@@ -10,7 +12,14 @@ const commitedCrime = function(){
         return (" You did not commit the crime, the crime was commited at " + timeOfCrime());
     } else if(answerTF !== response){
         return (" You committed the crime it's game over! Your court date is on: \n" + timeOfCrime());
+    } else {
+        return (" The judge will next to look at the case, try again");
     }
+}
+
+const judgeDecision = function(commitedCrime){
+
+
 }
 
 
@@ -20,7 +29,23 @@ const timeOfCrime = function(){
     return crimeDate;
 }
 
-module.exports = {
-    commitedCrime, 
-    timeOfCrime
+const partOfC8 = function(result){
+
+    let myClue = Number(victimGetCorps.clue);
+    // let result = Number(firstNumber + secondNumber);
+    if( result === myClue ){
+
+        return("You are part of InceptionU C8");
+    } else if( result < myClue ){
+
+        return("Please think, the number is too small");
+    } else if( result > myClue ){
+
+        return("This value is too big, try again");
+    } else {
+
+        return("Your math skills is not good enough to start this Classified Crime Scene");
+    }
 }
+
+module.exports = { commitedCrime, partOfC8, judgeDecision }
