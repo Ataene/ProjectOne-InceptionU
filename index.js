@@ -3,7 +3,7 @@ const express = require("express");
 const randomArrayNames = require("./randomNames");
 const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
-const { commitedCrime, partOfC8 } = require("./getAnswer");
+const { commitedCrime, partOfC8, judgeDecision  } = require("./getAnswer");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -86,27 +86,27 @@ app.get("/answer", function(req, res){
     response = req.query.response;
     console.log(answerTF);
     let crime = commitedCrime()
-    res.send(crime + " you need to call your lawyer, " + "curl http://localhost:3000/lawyer" +" to continue");
+    res.send(crime);
 });
 
 app.get("/lawyer", function(req, res){
 
+    let judgeName = req.query.judgeName;
+    
     let randomName = Math.floor(Math.random()*randomArrayNames.length);
     let randomLaywer = randomArrayNames[randomName];
-
-    let judgeName = req.query.judgeName;
-    // victimGetCorps.getLawyer = judge;
-    // judge.charAt(0).toUpperCase() + judge.slice(1)
-
-    // console.log(judge.charAt(0).toUpperCase() + judge.slice(1));
     let LawyerChar = randomLaywer.split("");
     let judgeChar = judgeName.split("");
-    const intersection = judgeChar.filter(element => LawyerChar.includes(element));
+    const nameMatch = judgeChar.filter(word => LawyerChar.includes(word));
+    let nameConcat = nameMatch.concat();
+    victimGetCorps.getLawyer = nameConcat;
 
     console.log(judgeChar);
     console.log(LawyerChar);
-    console.log("The result is " + intersection);
-    res.send("Yes");
+    console.log(nameConcat);
+
+    console.log("The result is " + nameConcat);
+    res.send(judgeDecision());
 });
 
 

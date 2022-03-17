@@ -2,7 +2,7 @@ const victimGetCorps = {
     
     crimeScene: "movie theatre",
     clue: 42,
-    score: "",
+    score: 0,
     nameState: "",
     getLawyer: "",
     security: "Security calls 911",

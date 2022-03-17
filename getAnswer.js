@@ -11,17 +11,22 @@ const commitedCrime = function(){
     if(answerTF === response){
         return (" You did not commit the crime, the crime was commited at " + timeOfCrime());
     } else if(answerTF !== response){
-        return (" You committed the crime it's game over! Your court date is on: \n" + timeOfCrime());
+        return (" You committed the crime it's game over! Your court date is on: \n" + timeOfCrime() + " you need to call your lawyer, " + "curl http://localhost:3000/lawyer");
     } else {
         return (" The judge will next to look at the case, try again");
     }
 }
 
-const judgeDecision = function(commitedCrime){
+const judgeDecision = function(){
 
-
+    let nameIncludes = victimGetCorps.getLawyer.includes("e");
+    if(nameIncludes){
+        return("Yes you are on it")
+    } else if(!nameIncludes) {
+        return("No, you have been sentence to 12months in prision");
+    }
+    
 }
-
 
 const timeOfCrime = function(){
     
