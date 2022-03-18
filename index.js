@@ -4,63 +4,48 @@ const randomArrayNames = require("./randomNames");
 const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
 const { commitedCrime, partOfC8, judgeDecision  } = require("./getAnswer");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = 3000;
-
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static(__dirname + '/public'));
 
     let anyQuestion = Math.floor(Math.random()*randomQuestion.length); //random question
     let quest = randomQuestion[anyQuestion].question; //question
     let answerTF = randomQuestion[anyQuestion].correct_answer; //answer
 
-    // string.charAt(0).toUpperCase() + string.slice(1);
-    // let suspectChar = randomSuspect.split("");
-
-
 app.get("/start", function(req, res){
 
     res.send("Yes! you just entered a crime scene, follow link to start: " + "curl http://localhost:3000/name?{name=Emman}");
-})
+});
 app.get("/name", function(req, res){
 
     let myName = req.query.name;
     victimGetCorps.nameState = myName;
-    res.send(victimGetCorps.nameState + " you are welcome to the game! " + "chrome http://localhost:3000/");
-})
-
-app.get("/", function(req, res){
-
-    res.sendFile(__dirname + "./index.html");
+    res.send(victimGetCorps.nameState + " you are welcome to the game! " + "curl http://localhost:3000/");
 });
 
-app.post("/", function(req, res){
+app.get("/number", function(req, res){
 
-    let firstNumber = Number(req.body.firstNumber);
-    let secondNumber = Number(req.body.secondNumber);
+    let firstNumber = Number(req.query.firstNumber);
+    let secondNumber = Number(req.query.secondNumber);
     let result = Number(firstNumber + secondNumber);
-
+    console.log(Number(result));
     let partOfInceptionC8 = partOfC8(result);
-   res.send(partOfInceptionC8);
-
+    res.send(partOfInceptionC8);
 });
 
 app.get("/crime", function(req, res){
 
-    res.write("You are Welcome to the: " + victimGetCorps.crimeScene + " curl http://localhost:3000/user\n");
+    res.write("Your Math skill is excellent" + victimGetCorps.crimeScene + " curl http://localhost:3000/user\n");
     res.send();
-    //Follow http://localhost:3000/user?name={yourname}&victom=name
 });
 
 app.get("/user", function(req, res){
 
-    let fname = req.query.fname;
     let vname = req.query.vname;
-
-    res.write(fname + " you are a witness in the movie theatre crime. \n");
-    res.write("The victim of the crime is: " + vname + " curl http://localhost:3000/suspect");
+    victimGetCorps.victName = vname;
+    res.write(victimGetCorps.nameState + " you are a witness in the movie theatre crime. \n");
+    res.write("The victim of the crime is: " + victimGetCorps.victName + " curl http://localhost:3000/suspect");
     res.send();
 });
 
@@ -71,13 +56,13 @@ app.get("/suspect", function(req, res){
     res.write(victimGetCorps.security + '\n');
     res.write(victimGetCorps.police + '\n');
     res.write(randomSuspect + ", is the crime suspect.\n");
-    res.write(randomSuspect + ", answer True or False to the question below. curl http://localhost:3000/question\n");
+    res.write(randomSuspect + ", Answer the next question to continue. curl http://localhost:3000/question\n");
     res.send();
-})
+});
 
 app.get("/question", function(req, res){
 
-    res.write("Answer True or False to this question: " + quest + " curl localhost:3000/answer");
+    res.write("Answer True or False: " + quest + " curl localhost:3000/answer");
     res.send();
 });
 
@@ -85,8 +70,8 @@ app.get("/answer", function(req, res){
 
     response = req.query.response;
     console.log(answerTF);
-    let crime = commitedCrime()
-    res.send(crime);
+    let crime = commitedCrime();
+    res.send(crime + "http://localhost:3000/laywer");
 });
 
 app.get("/lawyer", function(req, res){
@@ -100,11 +85,9 @@ app.get("/lawyer", function(req, res){
     const nameMatch = judgeChar.filter(word => LawyerChar.includes(word));
     let nameConcat = nameMatch.concat();
     victimGetCorps.getLawyer = nameConcat;
-
-    console.log(judgeChar);
-    console.log(LawyerChar);
-    console.log(nameConcat);
-
+    // console.log(judgeChar);
+    // console.log(LawyerChar);
+    // console.log(nameConcat);
     console.log("The result is " + nameConcat);
     res.send(judgeDecision());
 });

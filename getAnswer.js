@@ -21,9 +21,9 @@ const judgeDecision = function(){
 
     let nameIncludes = victimGetCorps.getLawyer.includes("e");
     if(nameIncludes){
-        return("Yes you are on it")
+        return("Based on the Judge Verdicts, you did not commit the crime." + " Game over, YOU WON!" + "play again. curl http://localhost:3000/start");
     } else if(!nameIncludes) {
-        return("No, you have been sentence to 12months in prision");
+        return("Sorry, you lost the case and have been sentenced to 12 months in prision" + " THE END" + " play again. curl http://localhost:3000/start");
     }
     
 }
@@ -37,16 +37,16 @@ const timeOfCrime = function(){
 const partOfC8 = function(result){
 
     let myClue = Number(victimGetCorps.clue);
-    // let result = Number(firstNumber + secondNumber);
+    
     if( result === myClue ){
 
-        return("You are part of InceptionU C8");
+        return("You know the clue, hence you are part of InceptionU C8");
     } else if( result < myClue ){
 
-        return("Please think, the number is too small");
+        return("Please think, the number is too small it start with 4");
     } else if( result > myClue ){
 
-        return("This value is too big, try again");
+        return("This value is too big, try again ask Dannielle for the clue");
     } else {
 
         return("Your math skills is not good enough to start this Classified Crime Scene");
