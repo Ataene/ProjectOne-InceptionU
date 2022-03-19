@@ -1,7 +1,7 @@
 const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
 
-
+//Function that respond base on the Suspect question
 const commitedCrime = function(){
 
     let anyQuestion = Math.floor(Math.random()*randomQuestion.length); //random question
@@ -14,18 +14,6 @@ const commitedCrime = function(){
         return (" You committed the crime. Your court date is on: \n" + timeOfCrime() + " you need to call your lawyer, " + "curl http://localhost:3000/lawyer");
     } else {
         return (" The judge will look at the case, try again");
-    }
-}
-
-const judgeDecision = function(){
-
-    let nameIncludes = victimGetCorps.getLawyer.includes("e");
-    let winnerScore = victimGetCorps.score + 1;
-    let loserScore = victimGetCorps.score - 1;
-    if( nameIncludes && winnerScore ){
-        return(`Based on the Judge Verdicts, you didn't commit the crime. YOU WON! score : ${winnerScore}, play again. curl http://localhost:3000/start`);
-    } else if( !nameIncludes && loserScore ) {
-        return(`Sorry, you lost the case and sentenced to 12 months in prision. YOU LOSE score : ${loserScore}, play again. curl http://localhost:3000/start`);
     }
 }
 
@@ -51,6 +39,19 @@ const partOfC8 = function(result){
     } else {
 
         return("Your math skills is not good enough to start this Classified Crime Scene");
+    }
+}
+
+    //Judge decide the fate of the Suspect either freed or gail time
+const judgeDecision = function(){
+
+    let nameIncludes = victimGetCorps.getLawyer.includes("e");
+    if( nameIncludes ){
+        victimGetCorps.score = victimGetCorps.score + 1;
+        return(`Based on the Judge Verdicts, you didn't commit the crime. YOU WON! score : ${victimGetCorps.score}, play again. curl http://localhost:3000/start`);
+    } else if( !nameIncludes ) {
+        victimGetCorps.score = victimGetCorps.score - 1;
+        return(`Sorry, you lost the case and sentenced to 12 months in prision. YOU LOSE score : ${victimGetCorps.score}, play again. curl http://localhost:3000/start`);
     }
 }
 

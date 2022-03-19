@@ -72,7 +72,7 @@ app.get("/question", function(req, res){
     res.send();
 });
 
-    //Random Suspect answer the question and response is checked against valid argument.
+    //Random Suspect answer the question and response is checked against valid argument
 app.get("/answer", function(req, res){
 
     response = req.query.response;
@@ -81,7 +81,7 @@ app.get("/answer", function(req, res){
     res.send(crime + "http://localhost:3000/laywer");
 });
 
-    //Suspect call his/her lawyer on the court date.
+//Suspect call his/her lawyer on the court date.
 app.get("/lawyer", function(req, res){
 
     let judgeName = req.query.judgeName;
