@@ -29,14 +29,14 @@ app.get("/number", function(req, res){
     let firstNumber = Number(req.query.firstNumber);
     let secondNumber = Number(req.query.secondNumber);
     let result = Number(firstNumber + secondNumber);
-    console.log(Number(result));
+    console.log(result);
     let partOfInceptionC8 = partOfC8(result);
     res.send(partOfInceptionC8);
 });
 
 app.get("/crime", function(req, res){
 
-    res.write("Your Math skill is excellent" + victimGetCorps.crimeScene + " curl http://localhost:3000/user\n");
+    res.write("Your Math skill is excellent, enter the " + victimGetCorps.crimeScene + " curl http://localhost:3000/user\n");
     res.send();
 });
 
