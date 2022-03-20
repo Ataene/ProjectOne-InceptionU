@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.19.2",
     "express": "^4.17.3",
+    "mongodb": "^4.4.1",
     "node-random-name": "^1.0.1",
     "readline-sync": "^1.4.10"
   },
