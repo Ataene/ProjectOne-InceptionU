@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 const url = "mongodb://127.0.0.1:27017";
 
@@ -19,9 +19,9 @@ async function crimeMongo(){
         
         console.log(`There is an error in the connection ${error}`)
     }
-    finally {
-        await client.close();
-    }
+    // finally {
+    //     await client.close();
+    // }
 }
     //making a connection to the Database connection to create Document.
 async function crimeCollecting(){
@@ -31,10 +31,47 @@ async function crimeCollecting(){
 
     return crimeCollection;
 }
-
+    //Creating and storing the crime Game
 async function createCrime(){
 
     let crimeConnection = await crimeCollecting();
-    let crimeResult = await crimeConnection.insertOne({name: "", score: 0})
-    return crimeResult;
+    let crimeInserted = await crimeConnection.insertOne({name: "Emmanuel", score: 0});
+    console.log(crimeInserted);
+    return crimeInserted;
 }
+    //Finding the crime Game in the collection/Documents
+async function findCrimeById(){
+
+    let crimeConnection = await crimeCollecting();
+    let crimeFound = await crimeConnection.findOne({_id: Object(id) });
+    console.log(crimeFound);
+    return crimeFound;
+}
+    //Updating crimeGame
+async function updateCrimeById(id, newGateData){
+
+    let crimeConnection = await crimeCollecting();
+    let crimeUpdated = await crimeConnection.updateOne(
+        { _id: Object(id) }, { $set: newGateData });
+    console.log(crimeUpdated);
+    return crimeUpdated;
+}
+    //FindAll returns and object cursor hence must be converted to and array.
+async function findAllCrime(){
+
+    let crimeConnection = await crimeCollecting();
+    let crimeCursor = await crimeConnection.find({});
+    let crimeArray = await crimeCursor.toArray();
+    console.log(crimeArray);
+    return crimeArray;
+}
+
+async function deleteCrimeById(){
+
+    let crimeConnection = await crimeCollecting("crime");
+    let crimeCollection = await crimeConnection.deleteOne({ _id: ObjectId(id)});
+    console.log(crimeCollection);
+    return crimeCollection;
+}
+
+module.exports = { createCrime, findCrimeById, updateCrimeById, findAllCrime, deleteCrimeById };

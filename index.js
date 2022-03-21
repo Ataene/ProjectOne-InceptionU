@@ -3,6 +3,7 @@ const randomArrayNames = require("./randomNames");
 const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
 const { commitedCrime, partOfC8, judgeDecision  } = require("./getAnswer");
+const { createCrime, findCrimeById, updateCrimeById, findAllCrime, deleteCrimeById } = require("./mongoDb")
 
 const app = express();
 const PORT = 3000;
