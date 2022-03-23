@@ -2,25 +2,19 @@ const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
 const randomArrayNames = require("./randomNames")
 
-
-let anyQuestion = Math.floor(Math.random() * randomQuestion.length); //random question
-let quest = randomQuestion[anyQuestion].question; //question
-let answerTF = randomQuestion[anyQuestion].correct_answer; //
-
 const getName = function(myName){
 
   victimGetCorps.nameState = myName;
     return (`${victimGetCorps.nameState}, you are welcome to CLASSIFIED CRIME SCENE!
     Enter two number that the SUM is equal to the clue number given in class. 
     curl http://localhost:3000/api/number?firstNumber={}&secondNumber={}`);
-}
+};
 
 const partOfC8 = function (firstNumber, secondNumber) {
 
   let myClue = Number(victimGetCorps.clue);
   let result = Number(firstNumber + secondNumber);
-
-    console.log(result);
+  console.log(result);
 
   if (result === myClue) {
     return `You know the clue, hence you are part of InceptionU C8`;
@@ -46,30 +40,28 @@ const getCrimePlace = function(getCrime){
     return(`The city is ${place}`)
   }
 
-}
+};
 
 const crimeUser = function(vName){
 
   victimGetCorps.victName = vName;
 
-    return(`You are a witness in the movie theatre crime. \n
-    The victim of the crime is ${victimGetCorps.victName}, curl http://localhost:3000/api/suspect`);
-}
+  return(`You are a witness in the movie theatre crime. \n
+  The victim of the crime is ${victimGetCorps.victName}, curl http://localhost:3000/api/suspect`);
+};
 
 const suspectQuestion = function(){
 
-    let randomName = Math.floor(Math.random() * randomArrayNames.length);
-    let randomSuspect = randomArrayNames[randomName];
+  let randomName = Math.floor(Math.random() * randomArrayNames.length);
+  let randomSuspect = randomArrayNames[randomName];
 
-    
-    return (`${victimGetCorps.security} ${victimGetCorps.police} ${randomSuspect}, is the crime suspect.
-    ${randomSuspect}. Answer the next question to continue. curl http://localhost:3000/api/question`);
-}
+  return (`${victimGetCorps.security} ${victimGetCorps.police} ${randomSuspect}, is the crime suspect.
+  ${randomSuspect}. Answer the next question to continue. curl http://localhost:3000/api/question`);
+};
 
 
 //Function that respond base on the Suspect question
 const commitedCrime = function (response) {
-
 
   let anyQuestion = Math.floor(Math.random() * randomQuestion.length); //random question
   let answerTF = randomQuestion[anyQuestion].correct_answer; //answer
@@ -94,21 +86,20 @@ const timeOfCrime = function () {
   return crimeDate;
 };
 
-
 //Judge decide the fate of the Suspect either freed or gail time
 const judgeDecision = function (judgeName) {
 
-    let randomName = Math.floor(Math.random() * randomArrayNames.length);
-    let randomLaywer = randomArrayNames[randomName];
-    let LawyerChar = randomLaywer.split("");
-    let judgeChar = judgeName.split("");
-    const nameMatch = judgeChar.filter(word => LawyerChar.includes(word));
-    let nameConcat = nameMatch.concat();
-    victimGetCorps.getLawyer = nameConcat;
-    console.log(judgeChar);
-    console.log(LawyerChar);
-    console.log(nameConcat);
-    console.log("The result is " + nameConcat);
+  let randomName = Math.floor(Math.random() * randomArrayNames.length);
+  let randomLaywer = randomArrayNames[randomName];
+  let LawyerChar = randomLaywer.split("");
+  let judgeChar = judgeName.split("");
+  const nameMatch = judgeChar.filter(word => LawyerChar.includes(word));
+  let nameConcat = nameMatch.concat();
+  victimGetCorps.getLawyer = nameConcat;
+  console.log(judgeChar);
+  console.log(LawyerChar);
+  console.log(nameConcat);
+  console.log("The result is " + nameConcat);
 
   let nameIncludes = victimGetCorps.getLawyer.includes("e");
   if (nameIncludes) {
