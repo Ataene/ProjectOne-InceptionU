@@ -9,4 +9,4 @@ Then the user informations is collected and it is persisted in the game.
 
 The technology required to function is express, body-parser and node-random-name from the npm modules.
 
-To start the code the user has to go to the home route to begin.
+To start the code the user has to go to the home route to begin. curl http://localhost:3000/api/start

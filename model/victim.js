@@ -6,6 +6,7 @@ const victimGetCorps = {
     victName: "",
     nameState: "",
     getLawyer: "",
+    crimePlace: "Calgary",
     security: "Security calls 911",
     police: "Corps, who stole the iPhone?",
     getPolice: function(){
