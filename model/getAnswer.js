@@ -5,9 +5,10 @@ const randomArrayNames = require("./randomNames")
 const getName = function(myName){
 
   victimGetCorps.nameState = myName;
-    return (`${victimGetCorps.nameState}, you are welcome to CLASSIFIED CRIME SCENE!
-    Enter two number that the SUM is equal to the clue number given in class. 
-    curl http://localhost:3000/api/number?firstNumber={}&secondNumber={}`);
+  
+  return (`${victimGetCorps.nameState}, you are welcome to CLASSIFIED CRIME SCENE!
+  Enter two number that the SUM is equal to the clue number given in class. 
+  curl http://localhost:3000/api/number?firstNumber={}&secondNumber={}`);
 };
 
 const partOfC8 = function (firstNumber, secondNumber) {

@@ -1,9 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-// const randomArrayNames = require("../model/randomNames");
 const randomQuestion = require("../model/api");
-// const victimGetCorps = require("../model/victim");
 
 const { commitedCrime, partOfC8, judgeDecision, getName, getCrimePlace, crimeUser, suspectQuestion  } = require("../model/getAnswer");
 const { createCrime, findCrimeById, updateCrimeById, findAllCrime, deleteCrimeById } = require("../model/mongoDb");
