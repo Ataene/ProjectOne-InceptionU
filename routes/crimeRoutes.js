@@ -26,7 +26,6 @@ router.get("/name", function (req, res) {
     res.write(`${victimGetCorps.nameState}, you are welcome to CLASSIFIED CRIME SCENE!\n`);
     res.write(`Enter two number that the SUM is equal to the clue number given in class. 
     curl http://localhost:3000/api/number?firstNumber={}&secondNumber={}`);
-
     res.send();
 });
 
@@ -41,21 +40,22 @@ router.get("/number", function (req, res) {
     res.send(partOfInceptionC8 + " curl http://localhost:3000/api/crime");
 });
 
+
+
 //Congratulates user for the knwoledge to enter a CLASSIFIED CRIME SCENE.
 router.get("/crime", function (req, res) {
 
-    // let getCrime = req.query.crimePlace;
-    // let place = victimGetCorps.crimePlace;
-    // if(getCrime === place){
-    //     res.send(`The City is not right`)
-    // } else if( getCrime === "calgary"){
-
-    //     res.send(`This is not the rigth path of this city`)
-    // } else{
-    //     res.send(`The city is ${place}`)
-    // }
-    res.write(`Your Math skill is excellent, enter the ${victimGetCorps.crimeScene}. curl http://localhost:3000/api/user\n`);
-    res.send();
+    let getCrime = req.query.crimePlace;
+    let place = victimGetCorps.crimePlace;
+    
+    if ( getCrime === place ){
+        res.send(`The City is right. Your Math skill is excellent, enter the ${victimGetCorps.crimeScene}. curl http://localhost:3000/api/user\n`)
+    } else if( getCrime === "calgary" ){
+        res.send(`This is not the rigth spelling of this city`)
+    } else{
+        res.send(`The city is ${place}`)
+    }
+    // res.send();
 });
 
 //Accepts the name of the Victim
@@ -64,7 +64,6 @@ router.get("/user", function (req, res) {
     let vname = req.query.vname;
 
     victimGetCorps.victName = vname;
-
     res.write(`You are a witness in the movie theatre crime. \n`);
     res.write(`The victim of the crime is ${victimGetCorps.victName}, curl http://localhost:3000/api/suspect`);
     res.send();

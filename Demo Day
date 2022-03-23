@@ -1,0 +1,17 @@
+Welcome to my Demo 
+
+Name: Emmanuel Alafonye K.
+Background: Petroleum Engineer and an aspiritng Software Developer/Engineer
+InceptionU my dream towards this journey is made possible with 
+Software Development to change careers and really really utilize my research skills to build real world applications
+
+- My project is a Classified Movie Theatre Crime Scene.
+I did a research to ascertain actual story telling of a crime scene which includes,
+a. Crime Setting b. The crime victim c. Actual Crime d. Suspect e. Clues d. Resolution.
+- Approach - hand sketch of flowchart defined the input and researched the documents.
+- Technology used - Express, Node, NPM, MongoDB, Mongoose
+- Challenges: Integrating with MongoDB and Mongoose, Using external APIs to generate random Names - used Http protocol.
+- Success/Learning - How to use express and backend Logic, Arrays, Objects, and flow controls
+
+- key learning: Backend Logic, Mongo Database
+- Do Next: Include frontend using React.
