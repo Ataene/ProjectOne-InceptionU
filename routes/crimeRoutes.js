@@ -1,8 +1,9 @@
 const express = require("express");
+const res = require("express/lib/response");
 const router = express.Router();
 
 const randomQuestion = require("../model/api");
-const { commitedCrime, partOfC8, judgeDecision, setName, getCrimePlace, crimeUser, suspectQuestion, communityService, jailTime, freeJail } = require("../model/getAnswer");
+const { commitedCrime, partOfC8, judgeDecision, setName, getCrimePlace, crimeUser, suspectQuestion, communityService, jailTime, freeJail, runAway, tooSmallNumbers, tooBigNumbers } = require("../model/getAnswer");
 const victimGetCorps = require("../model/victim");
 
 let anyQuestion = Math.floor(Math.random() * randomQuestion.length); //random question
@@ -32,10 +33,28 @@ router.get("/number", function (req, res) {
     res.send(partOfInceptionC8 + " curl http://localhost:3000/api/crime");
 });
 
+    // ALTERNATE ROUTE
+    router.get("/bigNumber", function(req, res){
+
+        let bNumber = req.query.bNumber;
+
+        let tBig = tooBigNumbers(bNumber)
+        res.send(tBig);
+    })
+
+    router.get("/smallNumber", function(req, res){
+
+        let smallNumber = req.query.smallNumber;
+
+        let tSmall = tooSmallNumbers(smallNumber);
+        res.send(tSmall);
+    })
+
 //Congratulates user for the knwoledge to enter a CLASSIFIED CRIME SCENE.
 router.get("/crime", function (req, res) {
 
     let getCrime = req.query.crimePlace;
+    // console.log
     let rightPlace = getCrimePlace(getCrime);
     res.send(rightPlace);
 });
@@ -89,12 +108,38 @@ router.get("/choice", function(req, res){
 
   let choose = req.query.choose;
   
-  let choiceMade =  communityService(choose);
+  let getFreed = freeJail(choose);
 
-  let choiceJail = jailTime(choose);
-
-  let getFreed = freeJail(choiceMade, choiceJail);
   res.send(getFreed);
+
+});
+
+router.get("/community", function(req, res){
+
+    let volunteer = req.query.volunteer;
+
+    let voluteServices = communityService(volunteer);
+
+    res.send(voluteServices);
+
+});
+
+router.get("/jail", function(req, res){
+
+    let jailFree = req.query.jailFree;
+
+    let goingJail = jailTime(jailFree);
+    
+    res.send(goingJail);
+});
+
+router.get("/run", function(){
+
+    let recapture = req.query.recapture;
+
+    let runCaptured = runAway(recapture);
+    res.send(runCaptured)
+
 });
 
 module.exports = router;
