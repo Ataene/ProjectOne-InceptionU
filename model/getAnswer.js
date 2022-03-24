@@ -2,7 +2,20 @@ const randomQuestion = require("./api");
 const victimGetCorps = require("./victim");
 const randomArrayNames = require("./randomNames")
 
-const getName = function(myName){
+
+const getName = function(){
+
+  return victimGetCorps.nameState;
+}
+  //Geting the response from the user Inputs.
+// const getResponse = function(){
+
+//   return victimGetCorps.response;
+// }
+
+
+
+const setName = function(myName){
 
   victimGetCorps.nameState = myName;
   
@@ -73,7 +86,7 @@ const commitedCrime = function (response) {
     );
   } else if (answerTF !== response) {
     return (
-      `You committed the crime. Your court date is on: \n" 
+      `You committed the crime. Your court date is on: \n 
       ${timeOfCrime()} you need to call your lawyer, curl http://localhost:3000/lawyer`
     );
   } else {
@@ -81,6 +94,8 @@ const commitedCrime = function (response) {
   }
 
 };
+
+
 
 const timeOfCrime = function () {
   let crimeDate = new Date();
@@ -112,4 +127,31 @@ const judgeDecision = function (judgeName) {
   }
 };
 
-module.exports = { commitedCrime, partOfC8, judgeDecision, getName, getCrimePlace, crimeUser, suspectQuestion };
+const communityService = function(choose){
+
+  let resChoice = victimGetCorps.choice[0];
+  if(choose === resChoice){
+
+    return(`You will work for free for 12 months`)
+  } 
+}
+
+const jailTime = function(choose){
+
+  let jailChoice = victimGetCorps.choice[1];
+  if (choose === jailChoice){
+    return (`You are going to Jail for 3 month with a criminal records`)
+  }
+}
+
+const freeJail = function(choiceMade, choiceJail){
+
+  if (choiceMade){
+    return (`You made the right choice to do a community Service`)
+  } else if(choiceJail){
+    return (`Your jail time will include a criminal record.`)
+  }
+}
+
+
+module.exports = { commitedCrime, partOfC8, judgeDecision, setName, getCrimePlace, crimeUser, suspectQuestion, communityService,jailTime, freeJail };

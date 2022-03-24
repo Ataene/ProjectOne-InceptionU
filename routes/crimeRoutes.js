@@ -2,10 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const randomQuestion = require("../model/api");
-
-const { commitedCrime, partOfC8, judgeDecision, getName, getCrimePlace, crimeUser, suspectQuestion  } = require("../model/getAnswer");
-const { createCrime, findCrimeById, updateCrimeById, findAllCrime, deleteCrimeById } = require("../model/mongoDb");
-// const { crimePlace } = require("../model/victim");
+const { commitedCrime, partOfC8, judgeDecision, setName, getCrimePlace, crimeUser, suspectQuestion, communityService, jailTime, freeJail } = require("../model/getAnswer");
+const victimGetCorps = require("../model/victim");
 
 let anyQuestion = Math.floor(Math.random() * randomQuestion.length); //random question
 let quest = randomQuestion[anyQuestion].question; //question
@@ -21,7 +19,7 @@ router.get("/start", function (req, res) {
 router.get("/name", function (req, res) {
     //Always enter the corresponding name at THE END OF THE QUERY
     let myName = req.query.name;
-    let nameReturned = getName(myName);
+    let nameReturned = setName(myName);
     res.send(nameReturned);
 });
 
@@ -69,6 +67,7 @@ router.get("/question", function (req, res) {
 router.get("/answer", function (req, res) {
 
     let response = req.query.response;
+    victimGetCorps.response = response;
     console.log("Your answer is: " + response);
     console.log("The correct answer is: " + answerTF);
 
@@ -83,7 +82,19 @@ router.get("/lawyer", function (req, res) {
 
     let giveJudge = judgeDecision(judgeName)
     
-    res.send(giveJudge);
+    res.send(`${giveJudge} choice between community "Service" or "Jail"`);
+});
+
+router.get("/choice", function(req, res){
+
+  let choose = req.query.choose;
+  
+  let choiceMade =  communityService(choose);
+
+  let choiceJail = jailTime(choose);
+
+  let getFreed = freeJail(choiceMade, choiceJail);
+  res.send(getFreed);
 });
 
 module.exports = router;
