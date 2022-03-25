@@ -1,28 +1,29 @@
-Welcome to my Demo 
+---------- Welcome to my Demo ----------
 
 Name: Emmanuel Alafonye K.
-Background: Petroleum Engineer and an aspiritng Software Developer/Engineer. 
 
-InceptionU my dream towards this journey is made possible with 
+----Background: Petroleum Engineer and an aspiritng Software Developer/Engineer. 
 
-Software Development to change careers and really really utilize my research skills to build 
+After trying to learn development for sometime now, it have been difficult to self teach Therefore InceptionU, Provide, support, structure with facilitator and follow student.
 
-real world applications
+----I am in Software Development to change careers and really utilize my research skills to build 
 
-- My project is a Classified Movie Theatre Crime Scene.
+real world applications.
 
-I did a research to ascertain actual story telling of a crime scene which includes,
+-- My project is a Classified Movie Theatre Crime Scene.
 
-a. Crime Setting b. The crime victim c. Actual Crime d. Suspect e. Clues d. Resolution.
+I did a research to ascertain actual crime storytelling of a crime scene which includes,
+
+a. Crime setting b. The crime victim c. The actual Crime d. Suspect e. Clues d. Resolution.
 
 - Approach - hand sketch of flowchart defined the input and researched the documents.
 
-- Technology used - Express, Node, NPM, MongoDB, Mongoose
+- Technology used - Express, Node, NPM, MongoDB, Mongoose and Zoom for communication.
 
-- Challenges: Integrating with MongoDB and Mongoose, Using external APIs to generate random Names - used Http protocol.
+- Challenges: Integrating with MongoDB and Mongoose, using external APIs to generate random Names - using http protocol.
 
-- Success/Learning - How to use express and backend Logic, Arrays, Objects, and flow controls
+- Success/Learning - How to use express and backend logic, arrays, objects, and flow controls
 
-- key learning: Backend Logic, Mongo Database
+- key learning: Backend Logic, and the ability to think before you write a program. Mongo Database and Express framework - MERN - Mongo, Express, (React), Node.
 
 - Do Next: Include frontend using React.
