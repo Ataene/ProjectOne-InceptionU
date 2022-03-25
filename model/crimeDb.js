@@ -26,6 +26,14 @@ const crimeSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    sent: {
+        type: Array,
+        default: ["best", "better", "good"]
+    },
+    choice: {
+        type: Array,
+        default: ["service", "jail", "runaway"]
+    },
     crimePlace: {
         type: String,
         default: "Calgary"
@@ -53,16 +61,16 @@ crimeSchema.static("getPolice", function(){
 });
 
 const Crime = mongoose.model("Crime", crimeSchema);
-Crime.getPolice();
+// Crime.getPolice();
 
-
+    //Creating a new database entry
 async function createCrime(){
 
     let crimeInserted = await Crime.create({});
     console.log(crimeInserted);
     return crimeInserted;
 }
-// createCrime();
+createCrime();
     //Finding the crime Game in the collection/Documents
 async function findCrimeById(id){
 
@@ -70,7 +78,9 @@ async function findCrimeById(id){
     console.log(crimeFound);
     return crimeFound;
 }
-findCrimeById('623b9e3e261ca7a526713223');
+// findCrimeById('623dcd70818331149c45e766');
+
+
     //Updating crimeGame
 async function updateCrimeById(id, newGateData){
 
@@ -82,10 +92,10 @@ async function updateCrimeById(id, newGateData){
     //FindAll returns and object cursor hence must be converted to and array.
 async function findAllCrime(){
 
-    let crimeCursor = await Crime.find({});
-    let crimeArray = await crimeCursor.toArray();
-    console.log(crimeArray);
-    return crimeArray;
+    let crimeFound = await Crime.find({});
+    // let crimeArray = await crimeCursor.toArray();
+    console.log(crimeFound);
+    return crimeFound;
 }
 
 async function deleteCrimeById(){
